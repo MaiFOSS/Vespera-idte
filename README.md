@@ -1,2 +1,2 @@
-# succotash
-succotash: Your handy text editor
+# VESPERA IDTE
+Vespera IDTE: Integrated Development and Text-Editing Environment
