@@ -1,10 +1,37 @@
 package org.maifoss.blackholeidte;
 
-import javax.swing.*;
-import java.awt.*;
-import java.io.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class Main {
     public static void main(String[] args) {
@@ -228,13 +255,12 @@ class TextEditor extends JFrame {
                 Desktop.getDesktop().browse(new URI(url));
             } else {
                 String os = System.getProperty("os.name").toLowerCase();
-                Runtime rt = Runtime.getRuntime();
                 if (os.contains("win")) {
-                    rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
+                    new ProcessBuilder("rundll32", "url.dll,FileProtocolHandler", url).start();
                 } else if (os.contains("mac")) {
-                    rt.exec("open " + url);
+                    new ProcessBuilder("open", url).start();
                 } else {
-                    rt.exec("xdg-open " + url);
+                    new ProcessBuilder("xdg-open", url).start();
                 }
             }
         } catch (IOException | URISyntaxException e) {
