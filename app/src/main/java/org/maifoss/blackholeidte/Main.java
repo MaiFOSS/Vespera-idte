@@ -296,6 +296,7 @@ class TextEditor extends JFrame {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             textArea.write(writer);
+            filePathArea.setText(file.getAbsolutePath());  // Display the file path in the bottom toolbar
             return true;
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error saving file", "Error", JOptionPane.ERROR_MESSAGE);
